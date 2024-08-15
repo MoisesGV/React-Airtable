@@ -7,7 +7,7 @@ import { faPersonCircleCheck, faHome } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = ({ email }) => {
   return (
-    <section className="d-flex flex-column flex-shrink-0 pt-5 px-3 text-white bg-dark col-md-3 col-lg-2 ">
+    <section className="d-flex flex-column flex-shrink-0 pt-5 px-3 text-white bg-dark col-md-3 col-lg-2  ">
       <hr />
       <ul className="nav nav-pills flex-column">
         <li className="nav-item">

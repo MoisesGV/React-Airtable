@@ -200,6 +200,8 @@ const ShowPerson = ({ data }) => {
       ShowAlert("Escribe el Teléfono", "warning");
     } else if (AsisteComo.trim() === "") {
       ShowAlert("Debe seleccionar una opción en Asiste Como", "warning");
+    } else if (EstatusUne.trim() === "") {
+      ShowAlert("Debe seleccionar una opción en Estatus Une", "warning");
     } else {
       if (Operation === 1) {
         //console.log("operacion" + Operation);
@@ -376,7 +378,7 @@ const ShowPerson = ({ data }) => {
   } else {
     //console.log(results);
     return (
-      <div className="App col-md-10 mt-2 pt-5 px-3 ">
+      <div className="App col-md-9 col-lg-10 mt-2 pt-5 px-3 order-first order-md-last">
         <div className="container-fluid App">
           <div className="row mt-3">
             {/*Searcher*/}
