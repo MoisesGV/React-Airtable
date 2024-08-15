@@ -32,7 +32,7 @@ const Login = () => {
         <div className="col-md-5 col-lg-3 mx-auto">
           <form className="card p-4 frame mx-auto" onSubmit={Autentication}>
             <img
-              src="../../public/avatar.png"
+              src="/public/avatar.png"
               className="rounded mx-auto d-block  text-center img-login"
               alt=""
             />
