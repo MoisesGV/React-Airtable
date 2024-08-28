@@ -57,7 +57,7 @@ const ShowPerson = ({ data }) => {
   const totalPersons = Persons.length;
   //console.log(totalPersons);
   const [CurrentPage, SetCurrentPage] = useState(1);
-  const [PersonsPerPage, SetPersonsPerPage] = useState(10);
+  const [PersonsPerPage, SetPersonsPerPage] = useState(20);
 
   const GetPersons = async () => {
     let baseURL = GetURL();
@@ -343,7 +343,8 @@ const ShowPerson = ({ data }) => {
   let results = [];
 
   if (!Search) {
-    results = Persons;
+    //results = Persons;
+    results = [];
     //console.log(results.fields);
   } else {
     //console.log(Persons);
@@ -841,12 +842,14 @@ const ShowPerson = ({ data }) => {
         </div>
         {/* <ModalAirtable />*/}
         <ModalAirtable data={AirtableRegister} />
-        <Pagination
-          CurrentPage={CurrentPage}
-          PersonsPerPage={PersonsPerPage}
-          SetCurrentPage={SetCurrentPage}
-          totalPersons={totalPersons}
-        />
+        {results.length > 0 && (
+          <Pagination
+            CurrentPage={CurrentPage}
+            PersonsPerPage={PersonsPerPage}
+            SetCurrentPage={SetCurrentPage}
+            totalPersons={totalPersons}
+          />
+        )}
       </div>
     );
   }
