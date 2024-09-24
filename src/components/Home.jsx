@@ -3,9 +3,10 @@ import ShowPerson from "./ShowPerson";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Supabase from "../Credenciales";
+import Loader from "./Loader";
 import { ShowAlert } from "../function";
 
-const Home = () => {
+const Home = ({ sesion }) => {
   //STATE
   const [Data, SetData] = useState([]);
   const [User, SetUser] = useState([]);
@@ -33,18 +34,25 @@ const Home = () => {
   useEffect(() => {
     GetAirtableConfig();
   }, []);
-
-  return (
-    <>
-      <Header />
-      <div className="container-fluid">
-        <div className="row vh-100">
-          <Sidebar email={User} />
-          <ShowPerson data={Data} />
+  if (sesion) {
+    return (
+      <>
+        <Header />
+        <div className="container-fluid">
+          <div className="row vh-100">
+            <Sidebar email={User} />
+            <div className="App col-md-9 col-lg-10 mt-2 pt-5 px-5 order-first order-md-last">
+              <div className="container-fluid App my-4">
+                <ShowPerson data={Data} />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else {
+    <Loader />;
+  }
 };
 
 export default Home;

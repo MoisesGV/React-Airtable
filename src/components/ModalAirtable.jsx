@@ -144,9 +144,9 @@ const ModalAirtable = ({ data }) => {
 
   return (
     <div className="modal fade " aria-hidden="true" id="modalAirtable">
-      <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-dialog modal-dialog-centered modal-lg">
         <div className="modal-content">
-          <div className="modal-header">
+          <div className="modal-header bg-dark text-white">
             <label className="h5">Configuración Airtable</label>
             <button
               id="btn-closeAirtable"
@@ -154,6 +154,7 @@ const ModalAirtable = ({ data }) => {
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              style={{ backgroundColor: "white", opacity: 1 }}
             ></button>
           </div>
           <div className="modal-body">
@@ -316,9 +317,9 @@ const ModalAirtable = ({ data }) => {
               </button>
             </div>
           </div>
-          <div className="modal-footer">
+          <div className="modal-footer bg-dark">
             <button
-              className="btn btn-secondary"
+              className="btn btn-light"
               data-bs-dismiss="modal"
               id="btnCerrar"
             >

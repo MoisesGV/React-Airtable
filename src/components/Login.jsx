@@ -6,6 +6,7 @@ import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
   const [usuarioError, setusuarioError] = useState(false);
+  const [msgError, setmsgError] = useState("");
 
   const Autentication = async (e) => {
     e.preventDefault();
@@ -18,11 +19,14 @@ const Login = () => {
         error,
       } = await Supabase.auth.signInWithPassword({ email, password });
 
-      if (!user) {
-        setusuarioError(true);
-      }
+      if (error) throw error;
+      if (!user) setusuarioError(true);
     } catch (error) {
-      alert("El usuario o la contraseña son incorrectos");
+      if (error == "AuthApiError: Invalid login credentials") {
+        setmsgError("El usuario o la contraseña son incorrectos");
+      } else {
+        setmsgError("Error de conexión con el Auth Supabase");
+      }
     }
   };
 
@@ -47,6 +51,7 @@ const Login = () => {
                 className="form-control py-2"
                 id="email"
                 placeholder="Email"
+                required
               ></input>
             </div>
             <div className="input-group mb-3 ">
@@ -59,19 +64,15 @@ const Login = () => {
                 id="password"
                 autoComplete="on"
                 placeholder="Contraseña"
+                required
               ></input>
             </div>
-            {/*<div className="form-check">
-            <input type="checkbox" className="form-check-input py-2" id="rememberMe"></input>
-            <label className="form-check-label">Recordarme</label>
-          </div>
-          */}
             <button type="submit" className="btn btn-primary btn-lg mt-3">
               Iniciar Sesión
             </button>
-            {usuarioError ? (
-              <p className="pt-2 text-danger">
-                El usuario o la contraseña son incorrectos
+            {usuarioError || msgError != "" ? (
+              <p className="pt-2 m-0 fs-5 text-danger text-center">
+                {msgError}
               </p>
             ) : (
               ""
