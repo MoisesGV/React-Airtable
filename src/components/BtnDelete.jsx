@@ -41,7 +41,7 @@ const BtnDelete = ({ Url, Id, Name, onDelete }) => {
             ShowAlert("Error en la Solicitud", "error");
           });
       } else {
-        ShowAlert("El registro No fue eliminado", "info");
+        //ShowAlert("El registro No fue eliminado", "info");
       }
     });
   };

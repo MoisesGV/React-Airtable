@@ -16,26 +16,20 @@ const BtnUpdateAsiste = ({ Url, Id, codigoEntrada, asisteComo, onChange }) => {
           {
             id: `${Id.trim()}`,
             fields: {
-              "Asiste Como": "Presencial",
+              "Asiste Como": "CONFIRMADO",
             },
           },
         ],
       };
 
-      if (asisteComo == "Presencial") {
-        ShowAlert(
-          "Este registro ya esta marcado como Asiste Presencial",
-          "info"
-        );
+      if (asisteComo == "CONFIRMADO") {
+        ShowAlert("Este registro ya esta CONFIRMADO", "info");
       } else {
         axios({ method: metodo, url: Url, data: parametros })
           .then(function (res) {
             let tipo = res["status"];
             let msj;
-            ShowAlert(
-              "Ha marcado este registro como Asiste Presencial",
-              "success"
-            );
+            ShowAlert("Ha marcado este registro como CONFIRMADO", "success");
             //console.log(res['status'])
             if (tipo === 200) {
               document.getElementById("btnCerrar").click();
@@ -54,6 +48,9 @@ const BtnUpdateAsiste = ({ Url, Id, codigoEntrada, asisteComo, onChange }) => {
   let color;
   let separador = " #";
   switch (asisteComo) {
+    case "CONFIRMADO":
+      color = "primary";
+      break;
     case "Presencial":
       color = "success";
       break;
@@ -68,7 +65,7 @@ const BtnUpdateAsiste = ({ Url, Id, codigoEntrada, asisteComo, onChange }) => {
   }
   return (
     <button
-      className={`btn btn-${color} fw-bold me-3 `}
+      className={`btn ${asisteComo} btn-${color} fw-bold me-3 `}
       onClick={() => UpdateAsiste(Id, codigoEntrada, asisteComo)}
     >
       {asisteComo}

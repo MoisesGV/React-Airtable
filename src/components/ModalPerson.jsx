@@ -6,6 +6,7 @@ import {
   faPhone,
   faAddressCard,
   faIdBadge,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { ShowAlert } from "../function";
 import axios from "axios";
@@ -282,24 +283,26 @@ const ModalPerson = ({ dataAirtable, operation, url, onChange, person }) => {
             </div>
 
             <div className="row ">
-              <div className="col-md-4">
+              <div className="col-md-5">
                 <label htmlFor="alumnoOInvitado" className="form-label">
                   {dataAirtable["alumnoOinvitado"]}
                 </label>
-                <select
-                  className="form-select "
-                  aria-label=""
-                  value={AlumnoOInvitado}
-                  onChange={(e) => {
-                    SetAlumnoOInvitado(e.target.value);
-                  }}
-                >
-                  <option value=""></option>
-                  <option value="Alumno">Alumno</option>
-                  <option value="Invitado">Invitado</option>
-                </select>
+                <div className="input-group mb-3">
+                  <span className="input-group-text">
+                    <FontAwesomeIcon icon={faUser} />
+                  </span>
+                  <input
+                    type="text"
+                    id="AlumnoOInvitado"
+                    className="form-control"
+                    value={AlumnoOInvitado}
+                    onChange={(e) => {
+                      SetAlumnoOInvitado(e.target.value);
+                    }}
+                  />
+                </div>
               </div>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <label htmlFor="nombreCompletoInvito" className="form-label">
                   {dataAirtable["nombreCompletoInvito"]}
                 </label>

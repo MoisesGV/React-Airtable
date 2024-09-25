@@ -250,13 +250,13 @@ const ModalAirtable = ({ data }) => {
             </div>
             <div className="mb-3">
               <label htmlFor="estatusUne" className="form-label">
-                Estatus de Une
+                Tipo de Entrada
               </label>
               <input
                 type="text"
                 id="estatusUne"
                 className="form-control"
-                placeholder="Estatus de Une"
+                placeholder="Tipo de Entrada"
                 value={EstatusUne}
                 onChange={(e) => {
                   SetEstatusUne(e.target.value);
