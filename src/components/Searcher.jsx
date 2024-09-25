@@ -2,12 +2,10 @@ import React, { useState } from "react";
 
 const Searcher = ({ onSearch }) => {
   const [search, setSearch] = useState("");
-
   const Search = (e) => {
-    setSearch(e.target.value);
-    if (e.target.value.length >= 3) {
-      onSearch(e.target.value);
-    }
+    //console.log(e);
+    onSearch(e);
+    setSearch(e);
   };
 
   return (
@@ -17,8 +15,15 @@ const Searcher = ({ onSearch }) => {
           type="text"
           className="form-control"
           placeholder="Buscar Nombre, Email, N° Entrada"
-          onChange={(e) => onSearch(e.target.value)}
+          onChange={(e) => Search(e.target.value)}
         />
+        {!search || search.trim() === "" ? (
+          <div className="alert alert-primary" role="alert">
+            Buscador vacio, escribe algo!
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

@@ -303,7 +303,7 @@ const ModalAirtable = ({ data }) => {
                 id="IdAirtable"
                 className="form-control"
                 placeholder="Url de Airtable/Tabla"
-                value={Id}
+                value={Id ? Id : "https://api.airtable.com/v0/"}
                 onChange={(e) => {
                   SetId(e.target.value);
                 }}

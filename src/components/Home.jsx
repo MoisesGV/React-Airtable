@@ -41,7 +41,7 @@ const Home = ({ sesion }) => {
         <div className="container-fluid">
           <div className="row vh-100">
             <Sidebar email={User} />
-            <div className="App col-md-9 col-lg-10 mt-2 pt-5 px-5 order-first order-md-last">
+            <div className="App col-md-9 col-lg-10 mt-2 pt-5 px-3 order-first order-md-last">
               <div className="container-fluid App my-4">
                 <ShowPerson data={Data} />
               </div>

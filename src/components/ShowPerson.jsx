@@ -156,14 +156,8 @@ const ShowPersonCard = ({ data }) => {
     SetOperation(false);
   };
 
-  //let results = [];
-  let results = Persons;
-  /*if (!Search) {
-    //results = Persons;
-    results = [];
+  let results = [];
 
-  } else {
-  */
   if (Search) {
     const searchValue =
       typeof Search === "number"
@@ -183,6 +177,8 @@ const ShowPersonCard = ({ data }) => {
           ?.toString()
           ?.includes(searchValue)
     );
+  } else {
+    results = [];
   }
 
   if (Pending) {
