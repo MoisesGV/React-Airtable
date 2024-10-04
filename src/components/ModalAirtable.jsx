@@ -18,7 +18,6 @@ const ModalAirtable = ({ data }) => {
   const [Dni, SetDni] = useState("");
   const [NombreTabla, SetNombreTabla] = useState("");
   const [Data, SetData] = useState(false);
-  const url = "https://api.airtable.com/v0/";
 
   const Validar = () => {
     if (NombreCompleto.trim() === "") {
@@ -113,7 +112,7 @@ const ModalAirtable = ({ data }) => {
               estatusUne: EstatusUne,
               asisteComo: AsisteComo,
               dni: Dni,
-              idAirtable: url + Id.replace(/\s/g, "%20"),
+              idAirtable: Id.replace(/\s/g, "%20"),
               idUser: iduser,
             },
             { onConflict: "idUser" }

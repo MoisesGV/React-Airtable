@@ -1,10 +1,16 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+
 import BtnDelete from "./BtnDelete";
 import BtnUpdate from "./BtnUpdate";
 import BtnUpdateAsiste from "./BtnUpdateAsiste";
-const PersonCard = ({ dataAirtable, dataPerson, url, onChange, onEdit }) => {
+const PersonCard = ({
+  dataAirtable,
+  dataPerson,
+  url,
+  onChange,
+  onEdit,
+  showBtn,
+}) => {
   return (
     <div className="col mb-1">
       <div className="card border-dark  ">
@@ -40,18 +46,20 @@ const PersonCard = ({ dataAirtable, dataPerson, url, onChange, onEdit }) => {
                 ]
               }
             </div>
-            <BtnDelete
-              Url={url}
-              Id={dataPerson.id}
-              Name={
-                dataPerson.fields[
-                  dataAirtable["nombreCompleto"]
-                    ? dataAirtable["nombreCompleto"]
-                    : "nombreCompleto"
-                ]
-              }
-              onDelete={onChange}
-            />
+            {showBtn && (
+              <BtnDelete
+                Url={url}
+                Id={dataPerson.id}
+                Name={
+                  dataPerson.fields[
+                    dataAirtable["nombreCompleto"]
+                      ? dataAirtable["nombreCompleto"]
+                      : "nombreCompleto"
+                  ]
+                }
+                onDelete={onChange}
+              />
+            )}
           </div>
         </h5>
         <div className="card-body">

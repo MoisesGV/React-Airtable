@@ -1,67 +1,27 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Loader from "./Loader";
-
 import Searcher from "./Searcher";
 import BtnAdd from "./BtnAdd";
 import PersonCard from "./PersonCard";
 import ModalAirtable from "./ModalAirtable";
 import { ShowAlert } from "../function";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCirclePlus,
-  faCheck,
-  faEdit,
-  faUser,
-  faFloppyDisk,
-  faHashtag,
-  faEnvelope,
-  faIdBadge,
-  faAt,
-  faPhone,
-  faList,
-  faShareFromSquare,
-  faAddressCard,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
 
-import withReactContent from "sweetalert2-react-content";
-import Swal from "sweetalert2";
 import Pagination from "./Pagination";
 import ModalPerson from "./ModalPerson";
+import ModalPermis from "./ModalPermis";
 
-const ShowPersonCard = ({ data }) => {
+const ShowPerson = ({ data, user }) => {
   //axios CONST
-
   const ApiKey = import.meta.env.VITE_AIRTABLE_API_KEY;
-  //const Url = import.meta.env.VITE_AIRTABLE_URL;
-  //const baseURL = (axios.defaults.baseURL = Url);
   axios.defaults.headers.post["Content-Type"] = "application/json";
   axios.defaults.headers["Authorization"] = `Bearer ${ApiKey}`;
 
   //STATE
   const [Pending, setPending] = useState(true);
   const [Persons, SetPersons] = useState([]);
-
   const [personToEdit, SetpersonToEdit] = useState([]);
-  /*
-  const [Person, SetPerson] = useState([]);
-  const [Id, SetId] = useState("");
-  const [NombreCompleto, SetNombreCompleto] = useState("");
-  const [AlumnoOInvitado, SetAlumnoOInvitado] = useState("");
-  const [CodigoEntrada, SetCodigoEntrada] = useState("");
-  const [NombreCompletoInvito, SetNombreCompletoInvito] = useState("");
-  const [Email, SetEmail] = useState("");
-  const [Telefono, SetTelefono] = useState("");
-  const [EstatusUne, SetEstatusUne] = useState("");
-  const [AsisteComo, SetAsisteComo] = useState("");
- const [Dni, SetDni] = useState("");
- const [Title, SetTitle] = useState("");
-  
-  */
-
   const [Operation, SetOperation] = useState(true);
-
   const [Search, SetSearch] = useState("");
   const [Data, SetData] = useState(false);
   const [AirtableRegister, SetAirtableRegister] = useState([]);
@@ -73,6 +33,12 @@ const ShowPersonCard = ({ data }) => {
   const [CurrentPage, SetCurrentPage] = useState(1);
   const [PersonsPerPage, SetPersonsPerPage] = useState(20);
 
+  const id = import.meta.env.VITE_ADMIN_KEY;
+  const id2 = import.meta.env.VITE_ADMIN_KEY2;
+  let showBtn = false;
+  if (user.id === id2 || user.id === id) {
+    showBtn = true;
+  }
   const GetURL = () => {
     let fieldOrder = data["nombreCompleto"].replace(" ", "%20");
     let order =
@@ -206,11 +172,13 @@ const ShowPersonCard = ({ data }) => {
                 url={UrlAirtableRegister}
                 onChange={GetPersons}
                 onEdit={EditPerson}
+                showBtn={showBtn}
               />
             );
           })}
         </div>
         <ModalAirtable data={AirtableRegister} />
+        <ModalPermis />
         <ModalPerson
           dataAirtable={AirtableRegister}
           operation={Operation}
@@ -222,4 +190,4 @@ const ShowPersonCard = ({ data }) => {
     );
   }
 };
-export default ShowPersonCard;
+export default ShowPerson;

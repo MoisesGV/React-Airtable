@@ -10,13 +10,22 @@ const Home = ({ sesion }) => {
   //STATE
   const [Data, SetData] = useState([]);
   const [User, SetUser] = useState([]);
+  const [Id, SetId] = useState("");
+
+  const id = import.meta.env.VITE_ADMIN_KEY;
+  const id2 = import.meta.env.VITE_ADMIN_KEY2;
 
   const GetAirtableConfig = async () => {
     const {
       data: { user },
     } = await Supabase.auth.getUser();
-    SetUser(user.email);
-    const iduser = user.id;
+    SetUser(user);
+    SetId(user.id);
+    let iduser = Id;
+
+    if (iduser != id || iduser != id2) {
+      iduser = id2;
+    }
     const { data, error } = await Supabase.from("table")
       .select()
       .eq("idUser", iduser);
@@ -34,16 +43,17 @@ const Home = ({ sesion }) => {
   useEffect(() => {
     GetAirtableConfig();
   }, []);
+
   if (sesion) {
     return (
       <>
         <Header />
         <div className="container-fluid">
           <div className="row vh-100">
-            <Sidebar email={User} />
+            <Sidebar user={User} />
             <div className="App col-md-9 col-lg-10 mt-2 pt-5 px-3 order-first order-md-last">
               <div className="container-fluid App my-4">
-                <ShowPerson data={Data} />
+                <ShowPerson data={Data} user={User} />
               </div>
             </div>
           </div>

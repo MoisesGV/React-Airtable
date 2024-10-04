@@ -19,6 +19,7 @@ import {
   faShareFromSquare,
   faAddressCard,
   faTrash,
+  faBridgeLock,
 } from "@fortawesome/free-solid-svg-icons";
 
 import withReactContent from "sweetalert2-react-content";
