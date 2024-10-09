@@ -19,6 +19,7 @@ const ModalAirtable = ({ data }) => {
   const [NombreTabla, SetNombreTabla] = useState("");
   const [Data, SetData] = useState(false);
 
+  //console.log(data);
   const Validar = () => {
     if (NombreCompleto.trim() === "") {
       ShowAlert("Escribe el nombre de la columna Nombre Completo", "warning");
@@ -92,6 +93,7 @@ const ModalAirtable = ({ data }) => {
             "Cambios Guardados<br>La página necesitará recargarse",
             "success"
           );
+          console.log(result);
           setTimeout(() => {
             location.reload();
           }, 1000);
@@ -117,6 +119,7 @@ const ModalAirtable = ({ data }) => {
             },
             { onConflict: "idUser" }
           );
+          console.log(result);
           ShowAlert(
             "Cambios Guardados<br>La página necesitará recargarse",
             "success"

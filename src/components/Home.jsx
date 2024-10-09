@@ -20,15 +20,15 @@ const Home = ({ sesion }) => {
       data: { user },
     } = await Supabase.auth.getUser();
     SetUser(user);
-    SetId(user.id);
-    let iduser = Id;
-
-    if (iduser != id || iduser != id2) {
-      iduser = id2;
+    let userId = "";
+    if (user.id != id && user.id != id2) {
+      userId = id;
+    } else {
+      userId = user.id;
     }
     const { data, error } = await Supabase.from("table")
       .select()
-      .eq("idUser", iduser);
+      .eq("idUser", userId);
     if (error) throw error;
     if (data.length > 0 && data) {
       SetData(data[0]);

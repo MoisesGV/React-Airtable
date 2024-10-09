@@ -101,6 +101,7 @@ const ShowPerson = ({ data, user }) => {
       "info"
     );
     SetAirtableRegister(data);
+    //console.log(data);
     SetData(true);
     GetPersons();
 
